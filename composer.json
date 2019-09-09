@@ -1,0 +1,15 @@
+{
+  "name": "qycloud/registryClient",
+  "description": "this is a registry client.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "mtao",
+      "email": "jmtao33@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": { "Registry\\Client\\": "src"}
+  },
+  "require": {}
+}
