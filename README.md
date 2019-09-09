@@ -2,6 +2,11 @@
 本项目是一个简易的 php 注册中心 client。通过注册中心 service 拿到 instance url，进行服务请求。
 
 
+##Installation
+```
+ composer require qpaas/registry-client
+```
+
 ## 示例代码：
 ```php
 $server = new Registry\Client\Server\Consul("192.168.0.166", 8900);
