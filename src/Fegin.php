@@ -37,7 +37,7 @@ class Fegin
             [],
             static::isGet() ? false : true
         );
-        return isset($fetchResult[0]) ? json_decode($fetchResult[0]) : [];
+        return isset($fetchResult[0]) ? json_decode($fetchResult[0], true) : [];
     }
 
     public static function isGet()
