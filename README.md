@@ -12,7 +12,9 @@
 $server = new Registry\Client\Server\Consul("192.168.0.166", 8900);
 $request = new Registry\Client\Fegin($server);
 
+# 确定返回值
 # $result = $request->request("AYSaaS-mtao-eagle-user", "/getuser");
 
+# 原生返回
 $result = $request->httpSend("AYSaaS-mtao-eagle-dataflow", "/getuser");
 ```
