@@ -6,7 +6,7 @@ class Fegin
 {
     public $server = null;
 
-    const SUCESS_STATUS = 0;
+    const SUCESS_STATUS = 1000000;
 
     public function __construct(ServerInterface $server)
     {
@@ -20,7 +20,7 @@ class Fegin
             throw new Exception\ServiceResultException("内部请求错误");
         }
 
-        if ($result['errorCode'] == self::SUCESS_STATUS) {
+        if ($result['code'] == self::SUCESS_STATUS) {
             return $result['result'];
         } else {
             throw new Exception\ServiceResultException($result['msg']);
