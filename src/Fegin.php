@@ -35,13 +35,8 @@ class Fegin
             $method,
             $data,
             [],
-            static::isGet() ? false : true
+            stripos($method, 'GET') === false
         );
         return isset($fetchResult[0]) ? json_decode($fetchResult[0], true) : [];
-    }
-
-    public static function isGet()
-    {
-        return isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'GET' ? true : false;
     }
 }
