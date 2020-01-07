@@ -17,13 +17,13 @@ class Fegin
     {
         $result = $this->httpSend($app, $api, $method, $data);
         if (empty($result)) {
-            throw new Exception\ServiceResultException("内部请求错误");
+            throw new \Exception("内部请求错误");
         }
 
         if ($result['code'] == self::SUCESS_STATUS) {
             return $result['result'];
         } else {
-            throw new Exception\ServiceResultException($result['msg']);
+            throw new \Exception($result['msg']);
         }
     }
 
