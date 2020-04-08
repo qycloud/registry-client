@@ -23,7 +23,10 @@ class Fegin
         if ($result['code'] == self::SUCESS_STATUS) {
             return $result['result'];
         } else {
-            throw new Exception\ServiceResultException($result['msg']);
+	        throw new Exception\ServiceResultException(
+                isset($result['msg']) ? $result['msg'] : "数据错误",
+                isset($result['code']) ? $result['code'] : 1011000
+            );
         }
     }
 
