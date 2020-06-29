@@ -28,7 +28,7 @@ class CurlClient
      *
      * @return array [$result, $errno] $result:结果, $errno:错误码(0为成功)
      */
-    public static function curlData($uri, $method = 'GET', $data = [], $options = [], $postInJSON = false)
+    public static function curlData($uri, $method = 'GET', $data = [], $options = [], $postInJSON = false, $header = [])
     {
         $method = strtoupper($method);
         $defaultOpts = [
@@ -45,6 +45,8 @@ class CurlClient
             $data = $postInJSON ? json_encode($data) : http_build_query($data);
             $options[CURLOPT_POSTFIELDS] = $data; //设置请求体，提交数据包
         }
+
+        $header && $defaultOpts[CURLOPT_HTTPHEADER] = array_merge($defaultOpts[CURLOPT_HTTPHEADER], $header);
 
         $ch = curl_init($uri);
         curl_setopt_array($ch, $options + $defaultOpts);    //批量设置CURL参数

@@ -13,9 +13,9 @@ class Fegin
         $this->server = $server;
     }
 
-    public function request($app, $api, $method = "GET", $data = [])
+    public function request($app, $api, $method = "GET", $data = [], $header = [])
     {
-        $result = $this->httpSend($app, $api, $method, $data);
+        $result = $this->httpSend($app, $api, $method, $data, $header);
         if (empty($result)) {
             throw new Exception\ServiceResultException("内部请求错误");
         }
@@ -30,7 +30,7 @@ class Fegin
         }
     }
 
-    public function httpSend($app, $api, $method = "GET", $data = [])
+    public function httpSend($app, $api, $method = "GET", $data = [], $header = [])
     {
         $domain = $this->server->getServer($app);
         $fetchResult = \Registry\Client\CurlClient::curlData(
@@ -38,7 +38,8 @@ class Fegin
             $method,
             $data,
             [],
-            stripos($method, 'GET') === false
+            stripos($method, 'GET') === false,
+            $header
         );
         return isset($fetchResult[0]) ? json_decode($fetchResult[0], true) : [];
     }
